@@ -33,14 +33,19 @@ const exampleSongData = require("./data/songs");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles(movies) {}
+function getAllMovieTitles(movies) {
+  return movies.map((movie) => movie.title)
+}
+
 
 /**
  * Returns an array of all of the song titles.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {string[]} An array of strings, all of which are song titles.
  */
-function getSongTitles(songs) {}
+function getSongTitles(songs) {
+  return songs.map((song) => song.title)
+}
 
 /**
  * Returns an array of all of the song titles with the artist.
@@ -51,7 +56,9 @@ function getSongTitles(songs) {}
  *  getSongDetails(songs);
  *  //> [ "Berlin Tsukin by Taiyo Ky", "Up by Sebastian Kamae", ... ]
  */
-function getSongDetails(songs) {}
+function getSongDetails(songs) {
+  return songs.map((song) => `${song.title} by ${song.artist}`)
+}
 
 /**
  * Returns an array of objects, where each object has a key that is the song title and has a value that is the song artist.
@@ -62,7 +69,10 @@ function getSongDetails(songs) {}
  *  getTitleAndArtist(songs);
  *  //> [ { "Berlin Tsukin": "Taiyo Ky" }, { Up: "Sebastian Kamae" }, ... ]
  */
-function getTitleAndArtist(songs) {}
+function getTitleAndArtist(songs) {
+  return songs.map((song) => { return {[song.title]: song.artist}
+});
+}
 
 /**
  * FIND PROBLEMS
@@ -73,21 +83,27 @@ function getTitleAndArtist(songs) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findPinkElephantsByTimestreet(songs) {}
+function findPinkElephantsByTimestreet(songs) {
+  return songs.find((song) => song.title === "Pink Elephants")
+}
 
 /**
  * Returns the first song in the list that is under three minutes.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstSongUnderThreeMinutes(songs) {}
+function findFirstSongUnderThreeMinutes(songs) {
+  return songs.find((song) => song.runtimeInSeconds < 180)
+}
 
 /**
  * Returns the first song in the list where the song title equals the song album.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstTitleTrack(songs) {}
+function findFirstTitleTrack(songs) {
+  return songs.find(song => song.title === song.album) 
+}
 
 /**
  * findById()
@@ -103,7 +119,9 @@ function findFirstTitleTrack(songs) {}
       // Toy Story 4
     };
  */
-function findById(movies, id) {}
+function findById(movies, id) {
+  return movies.find((movie) => movie.imdbID === id)
+}
 
 /**
  * FILTER PROBLEMS
@@ -114,21 +132,27 @@ function findById(movies, id) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]} An array of objects.
  */
-function getSongsBySaib(songs) {}
+function getSongsBySaib(songs) {
+  return songs.filter((song) => song.artist === "Saib")
+}
 
 /**
  * Returns an array of all songs where the runtime is over three minutes.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]} An array of objects.
  */
-function getSongsOverThreeMinutes(songs) {}
+function getSongsOverThreeMinutes(songs) {
+  return songs.filter((song) => song.runtimeInSeconds > 180)
+}
 
 /**
  * Returns an array of songs where the song title is the same as the song album.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]} An array of objects.
  */
-function getTitleTracks(songs) {}
+function getTitleTracks(songs) {
+  return songs.filter(song => song.title === song.album)
+}
 /**
  * filterByGenre()
  * -----------------------------
@@ -149,7 +173,9 @@ function getTitleTracks(songs) {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies, genre) {}
+function filterByGenre(movies, genre) {
+  return movies.filter((movie) => movie.genre.toLowerCase().split(", ").includes(genre.toLowerCase()))
+}
 // const answer = [];
 // for (let i = 0; i < movies.length; i++) {
 //   if (
@@ -183,7 +209,9 @@ function filterByGenre(movies, genre) {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  return movies.filter((movie) => movie.released <= year)
+}
 
 /*
  * REDUCE PROBLEMS
@@ -200,7 +228,9 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {}
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore(movies) {}
+function getHighestMetascore(movies) {
+
+}
 
 /**
  * getAverageIMDBRating()
@@ -252,21 +282,27 @@ function getBiggestBoxOfficeMovie(movies) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function allSongsAreOverTwoMinutes(songs) {}
+function allSongsAreOverTwoMinutes(songs) {
+  return songs.every(song => song.runtimeInSeconds < 180) 
+}
 
 /**
  * Returns `true` if any song is over four minutes. Otherwise, return `false`.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function anySongIsOverFourMinutes(songs) {}
+function anySongIsOverFourMinutes(songs) {
+  return songs.some(song => song.runtimeInSeconds > 240) 
+}
 
 /**
  * Returns `true` if any song is by the artist "Peanut". Otherwise, return `false`.
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function anySongIsByPeanut(songs) {}
+function anySongIsByPeanut(songs) {
+  return songs.some(song => song.artist === "Peanut") 
+}
 
 // Do not change anything below this line.
 module.exports = {
